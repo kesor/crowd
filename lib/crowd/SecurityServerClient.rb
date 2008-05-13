@@ -53,8 +53,8 @@ puts obj.authenticateApplication(parameters)
 # RAISES
 #   invalidAuthorizationTokenException InvalidAuthorizationTokenException - {http://exception.integration.crowd.atlassian.com}InvalidAuthorizationTokenException
 #   remoteException RemoteException - {http://rmi.java}RemoteException
+#   applicationPermissionException ApplicationPermissionException - {http://exception.integration.crowd.atlassian.com}ApplicationPermissionException
 #   objectNotFoundException ObjectNotFoundException - {http://exception.integration.crowd.atlassian.com}ObjectNotFoundException
-#   directoryPermissionException DirectoryPermissionException - {http://exception.integration.crowd.atlassian.com}DirectoryPermissionException
 #
 parameters = nil
 puts obj.addPrincipalToGroup(parameters)
@@ -77,6 +77,22 @@ parameters = nil
 puts obj.findRoleByName(parameters)
 
 # SYNOPSIS
+#   isGroupMember(parameters)
+#
+# ARGS
+#   parameters      IsGroupMember - {urn:SecurityServer}isGroupMember
+#
+# RETURNS
+#   parameters      IsGroupMemberResponse - {urn:SecurityServer}isGroupMemberResponse
+#
+# RAISES
+#   invalidAuthorizationTokenException InvalidAuthorizationTokenException - {http://exception.integration.crowd.atlassian.com}InvalidAuthorizationTokenException
+#   remoteException RemoteException - {http://rmi.java}RemoteException
+#
+parameters = nil
+puts obj.isGroupMember(parameters)
+
+# SYNOPSIS
 #   addRole(parameters)
 #
 # ARGS
@@ -89,7 +105,7 @@ puts obj.findRoleByName(parameters)
 #   invalidAuthorizationTokenException InvalidAuthorizationTokenException - {http://exception.integration.crowd.atlassian.com}InvalidAuthorizationTokenException
 #   remoteException RemoteException - {http://rmi.java}RemoteException
 #   invalidRoleException InvalidRoleException - {http://exception.integration.crowd.atlassian.com}InvalidRoleException
-#   directoryPermissionException DirectoryPermissionException - {http://exception.integration.crowd.atlassian.com}DirectoryPermissionException
+#   applicationPermissionException ApplicationPermissionException - {http://exception.integration.crowd.atlassian.com}ApplicationPermissionException
 #
 parameters = nil
 puts obj.addRole(parameters)
@@ -112,22 +128,6 @@ parameters = nil
 puts obj.findPrincipalByToken(parameters)
 
 # SYNOPSIS
-#   isGroupMember(parameters)
-#
-# ARGS
-#   parameters      IsGroupMember - {urn:SecurityServer}isGroupMember
-#
-# RETURNS
-#   parameters      IsGroupMemberResponse - {urn:SecurityServer}isGroupMemberResponse
-#
-# RAISES
-#   invalidAuthorizationTokenException InvalidAuthorizationTokenException - {http://exception.integration.crowd.atlassian.com}InvalidAuthorizationTokenException
-#   remoteException RemoteException - {http://rmi.java}RemoteException
-#
-parameters = nil
-puts obj.isGroupMember(parameters)
-
-# SYNOPSIS
 #   searchGroups(parameters)
 #
 # ARGS
@@ -144,6 +144,24 @@ parameters = nil
 puts obj.searchGroups(parameters)
 
 # SYNOPSIS
+#   removeAttributeFromPrincipal(parameters)
+#
+# ARGS
+#   parameters      RemoveAttributeFromPrincipal - {urn:SecurityServer}removeAttributeFromPrincipal
+#
+# RETURNS
+#   parameters      RemoveAttributeFromPrincipalResponse - {urn:SecurityServer}removeAttributeFromPrincipalResponse
+#
+# RAISES
+#   invalidAuthorizationTokenException InvalidAuthorizationTokenException - {http://exception.integration.crowd.atlassian.com}InvalidAuthorizationTokenException
+#   remoteException RemoteException - {http://rmi.java}RemoteException
+#   applicationPermissionException ApplicationPermissionException - {http://exception.integration.crowd.atlassian.com}ApplicationPermissionException
+#   objectNotFoundException ObjectNotFoundException - {http://exception.integration.crowd.atlassian.com}ObjectNotFoundException
+#
+parameters = nil
+puts obj.removeAttributeFromPrincipal(parameters)
+
+# SYNOPSIS
 #   getDomain(parameters)
 #
 # ARGS
@@ -158,24 +176,6 @@ puts obj.searchGroups(parameters)
 #
 parameters = nil
 puts obj.getDomain(parameters)
-
-# SYNOPSIS
-#   removeAttributeFromPrincipal(parameters)
-#
-# ARGS
-#   parameters      RemoveAttributeFromPrincipal - {urn:SecurityServer}removeAttributeFromPrincipal
-#
-# RETURNS
-#   parameters      RemoveAttributeFromPrincipalResponse - {urn:SecurityServer}removeAttributeFromPrincipalResponse
-#
-# RAISES
-#   invalidAuthorizationTokenException InvalidAuthorizationTokenException - {http://exception.integration.crowd.atlassian.com}InvalidAuthorizationTokenException
-#   remoteException RemoteException - {http://rmi.java}RemoteException
-#   objectNotFoundException ObjectNotFoundException - {http://exception.integration.crowd.atlassian.com}ObjectNotFoundException
-#   directoryPermissionException DirectoryPermissionException - {http://exception.integration.crowd.atlassian.com}DirectoryPermissionException
-#
-parameters = nil
-puts obj.removeAttributeFromPrincipal(parameters)
 
 # SYNOPSIS
 #   isRoleMember(parameters)
@@ -205,8 +205,8 @@ puts obj.isRoleMember(parameters)
 # RAISES
 #   invalidAuthorizationTokenException InvalidAuthorizationTokenException - {http://exception.integration.crowd.atlassian.com}InvalidAuthorizationTokenException
 #   remoteException RemoteException - {http://rmi.java}RemoteException
+#   applicationPermissionException ApplicationPermissionException - {http://exception.integration.crowd.atlassian.com}ApplicationPermissionException
 #   objectNotFoundException ObjectNotFoundException - {http://exception.integration.crowd.atlassian.com}ObjectNotFoundException
-#   directoryPermissionException DirectoryPermissionException - {http://exception.integration.crowd.atlassian.com}DirectoryPermissionException
 #
 parameters = nil
 puts obj.removeRole(parameters)
@@ -223,8 +223,8 @@ puts obj.removeRole(parameters)
 # RAISES
 #   invalidAuthorizationTokenException InvalidAuthorizationTokenException - {http://exception.integration.crowd.atlassian.com}InvalidAuthorizationTokenException
 #   remoteException RemoteException - {http://rmi.java}RemoteException
+#   applicationPermissionException ApplicationPermissionException - {http://exception.integration.crowd.atlassian.com}ApplicationPermissionException
 #   objectNotFoundException ObjectNotFoundException - {http://exception.integration.crowd.atlassian.com}ObjectNotFoundException
-#   directoryPermissionException DirectoryPermissionException - {http://exception.integration.crowd.atlassian.com}DirectoryPermissionException
 #
 parameters = nil
 puts obj.removePrincipalFromRole(parameters)
@@ -241,11 +241,47 @@ puts obj.removePrincipalFromRole(parameters)
 # RAISES
 #   invalidAuthorizationTokenException InvalidAuthorizationTokenException - {http://exception.integration.crowd.atlassian.com}InvalidAuthorizationTokenException
 #   remoteException RemoteException - {http://rmi.java}RemoteException
-#   directoryPermissionException DirectoryPermissionException - {http://exception.integration.crowd.atlassian.com}DirectoryPermissionException
+#   applicationPermissionException ApplicationPermissionException - {http://exception.integration.crowd.atlassian.com}ApplicationPermissionException
 #   invalidGroupException InvalidGroupException - {http://exception.integration.crowd.atlassian.com}InvalidGroupException
 #
 parameters = nil
 puts obj.addGroup(parameters)
+
+# SYNOPSIS
+#   updateGroup(parameters)
+#
+# ARGS
+#   parameters      UpdateGroup - {urn:SecurityServer}updateGroup
+#
+# RETURNS
+#   parameters      UpdateGroupResponse - {urn:SecurityServer}updateGroupResponse
+#
+# RAISES
+#   invalidAuthorizationTokenException InvalidAuthorizationTokenException - {http://exception.integration.crowd.atlassian.com}InvalidAuthorizationTokenException
+#   remoteException RemoteException - {http://rmi.java}RemoteException
+#   applicationPermissionException ApplicationPermissionException - {http://exception.integration.crowd.atlassian.com}ApplicationPermissionException
+#   objectNotFoundException ObjectNotFoundException - {http://exception.integration.crowd.atlassian.com}ObjectNotFoundException
+#
+parameters = nil
+puts obj.updateGroup(parameters)
+
+# SYNOPSIS
+#   createPrincipalToken(parameters)
+#
+# ARGS
+#   parameters      CreatePrincipalToken - {urn:SecurityServer}createPrincipalToken
+#
+# RETURNS
+#   parameters      CreatePrincipalTokenResponse - {urn:SecurityServer}createPrincipalTokenResponse
+#
+# RAISES
+#   invalidAuthorizationTokenException InvalidAuthorizationTokenException - {http://exception.integration.crowd.atlassian.com}InvalidAuthorizationTokenException
+#   invalidAuthenticationException InvalidAuthenticationException - {http://exception.integration.crowd.atlassian.com}InvalidAuthenticationException
+#   remoteException RemoteException - {http://rmi.java}RemoteException
+#   inactiveAccountException InactiveAccountException - {http://exception.integration.crowd.atlassian.com}InactiveAccountException
+#
+parameters = nil
+puts obj.createPrincipalToken(parameters)
 
 # SYNOPSIS
 #   findRoleMemberships(parameters)
@@ -259,6 +295,7 @@ puts obj.addGroup(parameters)
 # RAISES
 #   invalidAuthorizationTokenException InvalidAuthorizationTokenException - {http://exception.integration.crowd.atlassian.com}InvalidAuthorizationTokenException
 #   remoteException RemoteException - {http://rmi.java}RemoteException
+#   objectNotFoundException ObjectNotFoundException - {http://exception.integration.crowd.atlassian.com}ObjectNotFoundException
 #
 parameters = nil
 puts obj.findRoleMemberships(parameters)
@@ -291,8 +328,8 @@ puts obj.getCacheTime(parameters)
 # RAISES
 #   invalidAuthorizationTokenException InvalidAuthorizationTokenException - {http://exception.integration.crowd.atlassian.com}InvalidAuthorizationTokenException
 #   remoteException RemoteException - {http://rmi.java}RemoteException
+#   applicationPermissionException ApplicationPermissionException - {http://exception.integration.crowd.atlassian.com}ApplicationPermissionException
 #   objectNotFoundException ObjectNotFoundException - {http://exception.integration.crowd.atlassian.com}ObjectNotFoundException
-#   directoryPermissionException DirectoryPermissionException - {http://exception.integration.crowd.atlassian.com}DirectoryPermissionException
 #
 parameters = nil
 puts obj.removePrincipal(parameters)
@@ -310,8 +347,8 @@ puts obj.removePrincipal(parameters)
 #   invalidAuthorizationTokenException InvalidAuthorizationTokenException - {http://exception.integration.crowd.atlassian.com}InvalidAuthorizationTokenException
 #   invalidCredentialException InvalidCredentialException - {http://exception.integration.crowd.atlassian.com}InvalidCredentialException
 #   remoteException RemoteException - {http://rmi.java}RemoteException
+#   applicationPermissionException ApplicationPermissionException - {http://exception.integration.crowd.atlassian.com}ApplicationPermissionException
 #   objectNotFoundException ObjectNotFoundException - {http://exception.integration.crowd.atlassian.com}ObjectNotFoundException
-#   directoryPermissionException DirectoryPermissionException - {http://exception.integration.crowd.atlassian.com}DirectoryPermissionException
 #
 parameters = nil
 puts obj.resetPrincipalCredential(parameters)
@@ -344,8 +381,8 @@ puts obj.findAllRoleNames(parameters)
 # RAISES
 #   invalidAuthorizationTokenException InvalidAuthorizationTokenException - {http://exception.integration.crowd.atlassian.com}InvalidAuthorizationTokenException
 #   remoteException RemoteException - {http://rmi.java}RemoteException
+#   applicationPermissionException ApplicationPermissionException - {http://exception.integration.crowd.atlassian.com}ApplicationPermissionException
 #   objectNotFoundException ObjectNotFoundException - {http://exception.integration.crowd.atlassian.com}ObjectNotFoundException
-#   directoryPermissionException DirectoryPermissionException - {http://exception.integration.crowd.atlassian.com}DirectoryPermissionException
 #
 parameters = nil
 puts obj.addPrincipalToRole(parameters)
@@ -427,8 +464,8 @@ puts obj.findAllGroupNames(parameters)
 # RAISES
 #   invalidAuthorizationTokenException InvalidAuthorizationTokenException - {http://exception.integration.crowd.atlassian.com}InvalidAuthorizationTokenException
 #   remoteException RemoteException - {http://rmi.java}RemoteException
+#   applicationPermissionException ApplicationPermissionException - {http://exception.integration.crowd.atlassian.com}ApplicationPermissionException
 #   objectNotFoundException ObjectNotFoundException - {http://exception.integration.crowd.atlassian.com}ObjectNotFoundException
-#   directoryPermissionException DirectoryPermissionException - {http://exception.integration.crowd.atlassian.com}DirectoryPermissionException
 #
 parameters = nil
 puts obj.addAttributeToPrincipal(parameters)
@@ -445,8 +482,8 @@ puts obj.addAttributeToPrincipal(parameters)
 # RAISES
 #   invalidAuthorizationTokenException InvalidAuthorizationTokenException - {http://exception.integration.crowd.atlassian.com}InvalidAuthorizationTokenException
 #   remoteException RemoteException - {http://rmi.java}RemoteException
+#   applicationPermissionException ApplicationPermissionException - {http://exception.integration.crowd.atlassian.com}ApplicationPermissionException
 #   objectNotFoundException ObjectNotFoundException - {http://exception.integration.crowd.atlassian.com}ObjectNotFoundException
-#   directoryPermissionException DirectoryPermissionException - {http://exception.integration.crowd.atlassian.com}DirectoryPermissionException
 #
 parameters = nil
 puts obj.removePrincipalFromGroup(parameters)
@@ -463,6 +500,7 @@ puts obj.removePrincipalFromGroup(parameters)
 # RAISES
 #   invalidAuthorizationTokenException InvalidAuthorizationTokenException - {http://exception.integration.crowd.atlassian.com}InvalidAuthorizationTokenException
 #   remoteException RemoteException - {http://rmi.java}RemoteException
+#   objectNotFoundException ObjectNotFoundException - {http://exception.integration.crowd.atlassian.com}ObjectNotFoundException
 #
 parameters = nil
 puts obj.findGroupMemberships(parameters)
@@ -480,11 +518,29 @@ puts obj.findGroupMemberships(parameters)
 #   invalidAuthorizationTokenException InvalidAuthorizationTokenException - {http://exception.integration.crowd.atlassian.com}InvalidAuthorizationTokenException
 #   invalidCredentialException InvalidCredentialException - {http://exception.integration.crowd.atlassian.com}InvalidCredentialException
 #   remoteException RemoteException - {http://rmi.java}RemoteException
+#   applicationPermissionException ApplicationPermissionException - {http://exception.integration.crowd.atlassian.com}ApplicationPermissionException
 #   objectNotFoundException ObjectNotFoundException - {http://exception.integration.crowd.atlassian.com}ObjectNotFoundException
-#   directoryPermissionException DirectoryPermissionException - {http://exception.integration.crowd.atlassian.com}DirectoryPermissionException
 #
 parameters = nil
 puts obj.updatePrincipalCredential(parameters)
+
+# SYNOPSIS
+#   authenticatePrincipalSimple(parameters)
+#
+# ARGS
+#   parameters      AuthenticatePrincipalSimple - {urn:SecurityServer}authenticatePrincipalSimple
+#
+# RETURNS
+#   parameters      AuthenticatePrincipalSimpleResponse - {urn:SecurityServer}authenticatePrincipalSimpleResponse
+#
+# RAISES
+#   invalidAuthorizationTokenException InvalidAuthorizationTokenException - {http://exception.integration.crowd.atlassian.com}InvalidAuthorizationTokenException
+#   invalidAuthenticationException InvalidAuthenticationException - {http://exception.integration.crowd.atlassian.com}InvalidAuthenticationException
+#   remoteException RemoteException - {http://rmi.java}RemoteException
+#   inactiveAccountException InactiveAccountException - {http://exception.integration.crowd.atlassian.com}InactiveAccountException
+#
+parameters = nil
+puts obj.authenticatePrincipalSimple(parameters)
 
 # SYNOPSIS
 #   updatePrincipalAttribute(parameters)
@@ -498,8 +554,8 @@ puts obj.updatePrincipalCredential(parameters)
 # RAISES
 #   invalidAuthorizationTokenException InvalidAuthorizationTokenException - {http://exception.integration.crowd.atlassian.com}InvalidAuthorizationTokenException
 #   remoteException RemoteException - {http://rmi.java}RemoteException
+#   applicationPermissionException ApplicationPermissionException - {http://exception.integration.crowd.atlassian.com}ApplicationPermissionException
 #   objectNotFoundException ObjectNotFoundException - {http://exception.integration.crowd.atlassian.com}ObjectNotFoundException
-#   directoryPermissionException DirectoryPermissionException - {http://exception.integration.crowd.atlassian.com}DirectoryPermissionException
 #
 parameters = nil
 puts obj.updatePrincipalAttribute(parameters)
@@ -566,10 +622,26 @@ puts obj.isCacheEnabled(parameters)
 #   invalidCredentialException InvalidCredentialException - {http://exception.integration.crowd.atlassian.com}InvalidCredentialException
 #   invalidPrincipalException InvalidPrincipalException - {http://exception.integration.crowd.atlassian.com}InvalidPrincipalException
 #   remoteException RemoteException - {http://rmi.java}RemoteException
-#   directoryPermissionException DirectoryPermissionException - {http://exception.integration.crowd.atlassian.com}DirectoryPermissionException
+#   applicationPermissionException ApplicationPermissionException - {http://exception.integration.crowd.atlassian.com}ApplicationPermissionException
 #
 parameters = nil
 puts obj.addPrincipal(parameters)
+
+# SYNOPSIS
+#   findAllGroupRelationships(parameters)
+#
+# ARGS
+#   parameters      FindAllGroupRelationships - {urn:SecurityServer}findAllGroupRelationships
+#
+# RETURNS
+#   parameters      FindAllGroupRelationshipsResponse - {urn:SecurityServer}findAllGroupRelationshipsResponse
+#
+# RAISES
+#   invalidAuthorizationTokenException InvalidAuthorizationTokenException - {http://exception.integration.crowd.atlassian.com}InvalidAuthorizationTokenException
+#   remoteException RemoteException - {http://rmi.java}RemoteException
+#
+parameters = nil
+puts obj.findAllGroupRelationships(parameters)
 
 # SYNOPSIS
 #   isValidPrincipalToken(parameters)
@@ -599,8 +671,8 @@ puts obj.isValidPrincipalToken(parameters)
 # RAISES
 #   invalidAuthorizationTokenException InvalidAuthorizationTokenException - {http://exception.integration.crowd.atlassian.com}InvalidAuthorizationTokenException
 #   remoteException RemoteException - {http://rmi.java}RemoteException
+#   applicationPermissionException ApplicationPermissionException - {http://exception.integration.crowd.atlassian.com}ApplicationPermissionException
 #   objectNotFoundException ObjectNotFoundException - {http://exception.integration.crowd.atlassian.com}ObjectNotFoundException
-#   directoryPermissionException DirectoryPermissionException - {http://exception.integration.crowd.atlassian.com}DirectoryPermissionException
 #
 parameters = nil
 puts obj.removeGroup(parameters)
@@ -622,5 +694,21 @@ puts obj.removeGroup(parameters)
 #
 parameters = nil
 puts obj.authenticatePrincipal(parameters)
+
+# SYNOPSIS
+#   getGrantedAuthorities(parameters)
+#
+# ARGS
+#   parameters      GetGrantedAuthorities - {urn:SecurityServer}getGrantedAuthorities
+#
+# RETURNS
+#   parameters      GetGrantedAuthoritiesResponse - {urn:SecurityServer}getGrantedAuthoritiesResponse
+#
+# RAISES
+#   invalidAuthorizationTokenException InvalidAuthorizationTokenException - {http://exception.integration.crowd.atlassian.com}InvalidAuthorizationTokenException
+#   remoteException RemoteException - {http://rmi.java}RemoteException
+#
+parameters = nil
+puts obj.getGrantedAuthorities(parameters)
 
 

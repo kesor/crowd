@@ -1,5 +1,8 @@
-== 0.5.3 / 2007-10-24
+== 0.5.4 / 2008-05-14
 
+* 0.5.4 update by evgeny.zislis@gmail.com
+  * upgrade to crowd 1.4.0
+  * bump soap4r to 1.5.8
 * 0.5.3
   * Added is_valid_principal_token?
 * 0.5.2
