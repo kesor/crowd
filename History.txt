@@ -1,0 +1,28 @@
+== 0.5.3 / 2007-10-24
+
+* 0.5.3
+  * Added is_valid_principal_token?
+* 0.5.2
+  * Fixed an uncaught exception when finding a user by an expired token.
+* 0.5.1
+  * Added invalidate_principal_token
+* 0.5.0 
+  * Allow application to re-authenticate if token is invalid.
+  * Refactored all methods to reduce code and generalize exception handling.
+* 0.4.0
+  * Added find_principal_by_token
+* r3 - 10/16/07
+  * Extracted class
+  * Shifted test to TestUnit
+  * Test creates and cleans up all actors
+  * Added partial error handling
+  * Implemented more function points
+  * Tweaked directory structure
+* r2 - 7/10/07
+  * Cleaned up commenting
+  * Reformatted output
+  * Parsing principal
+  * Added delete of test attribute before and after run
+  * Corrected WSDL
+* r1 - 7/5/07
+  * Intial release

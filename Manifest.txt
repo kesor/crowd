@@ -1,0 +1,12 @@
+History.txt
+Manifest.txt
+README.txt
+Rakefile
+lib/crowd.rb
+lib/crowd/crowd-1.1.0.wsdl
+lib/crowd/default.rb
+lib/crowd/defaultDriver.rb
+lib/crowd/defaultMappingRegistry.rb
+lib/crowd/SecurityServerClient.rb
+lib/crowd/version.rb
+test/test_crowd.rb
