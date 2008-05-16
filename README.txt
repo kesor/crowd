@@ -4,14 +4,16 @@
 
 == DESCRIPTION:
 
-A client for Atlassian Crowd v1.4.0
+A client for Atlassian[http://www.atlassian.com] Crowd[http://www.atlassian.com/crowd] v1.4.0
 
-Notes:
-WSDL stub generated with wsdl2ruby.rb --wsdl http://localhost:8095/crowd/services/SecurityServer?wsdl --type client
+=== NOTES:
+WSDL stub generated with:
+  wsdl2ruby.rb --wsdl http://localhost:8095/crowd/services/SecurityServer?wsdl --type client
+
 Original SOAP API is available from Atlassian at http://confluence.atlassian.com/display/CROWD/SOAP+API
 
 == FEATURES:
-  
+
 Methods exercised:
 
 * authenticatePrincipal
