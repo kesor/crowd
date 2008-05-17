@@ -1,4 +1,5 @@
 #
+#  Updated by Evgeny Zislis, evgeny.zislis@gmail.con on 2008-05-15
 #  Created by Jason Rimmer, jrimmer@irth.net on 2007-10-16.
 #  I hereby place this work that I have authored into the public domain
 #  and in the process abandon all copyright protection.
@@ -6,8 +7,8 @@
 require 'rubygems'
 gem 'soap4r'
 
+require File.join(File.dirname(__FILE__), 'crowd', 'version')
 require File.join(File.dirname(__FILE__), 'crowd', 'defaultDriver.rb')
-require 'crowd/version'
 
 #
 # Place 'obj.wiredump_dev = STDERR' after any SecurityServerPortType
