@@ -29,12 +29,12 @@ class Crowd
   private
   
   @@application_token = nil
+  @@crowd_app_name = nil
+  @@crowd_app_pword = nil
   
   public
   
   @@crowd_url = nil
-  @@crowd_app_name = nil
-  @@crowd_app_pword = nil
   
   def self.crowd_url=(value); @@crowd_url = value; end
   def self.crowd_app_name=(value); @@crowd_app_name = value; end
@@ -45,56 +45,42 @@ class Crowd
   #
   # Exceptions
   #
-  class AuthenticationException < Exception; end
-  class AuthenticationConnectionException < AuthenticationException; end
+  class AuthenticationException < StandardError; end
+  class AuthenticationConnectionException < ::Errno::ECONNREFUSED; end
   class AuthenticationInvalidCredentialException < AuthenticationException; end
   class AuthenticationInvalidException < AuthenticationException; end
   class AuthenticationObjectNotFoundException < AuthenticationException; end
-  class AuthenticationInvalidObject < AuthenticationException; end
   
   #
   # Public methods
   #
 
   ##
-  # Authenticate application
-  def self.authenticate_application()
-    @@application_token = nil
-    
-    if @@crowd_app_name.nil?
-      @@crowd_app_name = CROWD_APPLICATION_NAME
-    end
-    if @@crowd_app_pword.nil?
-      @@crowd_app_pword = CROWD_APPLICATION_PASSWORD
-    end
-    
+  # Authenticates an application client to the Crowd security server.
+  def self.authenticate_application(validation_factors = {})
     pword = PasswordCredential.new(@@crowd_app_pword, false)
-    ctx = ApplicationAuthenticationContext.new(pword, @@crowd_app_name, nil)
+    aovf = helper_validation_factors(validation_factors)
+    ctx = ApplicationAuthenticationContext.new(pword, @@crowd_app_name, aovf)
     arg = AuthenticateApplication.new(ctx)
-
-    begin      
-      response = server.authenticateApplication(arg)  
-    rescue Errno::ECONNREFUSED
-      raise AuthenticationConnectionException
-    rescue Exception
-      raise AuthenticationException, response
+    begin
+      response = server.authenticateApplication(arg)
+    rescue Errno::ECONNREFUSED => e
+      raise AuthenticationConnectionException, e
     end
-  
-    if !response.is_a?(AuthenticateApplicationResponse)
-      raise AuthenticationException, response
-    end
-    
-    @@application_token = AuthenticatedToken.new(@@crowd_app_name, response.out.token)
-    
-    response.out.token
+    @@application_token = response.out
   end
   
   ##
-  # Authenticate principal
-  def self.authenticate_principal(username, password)
-    response = authenticated_connection do      
+  # Authenticates a principal verses the calling who is in the application's assigned directory.
+  #
+  # To use SSO, set:
+  #   validation_factors = { 'USER_AGENT' => '...', 'REMOTE_ADDRESS' => '...' }
+  #   for proxy users { 'X_FORWARDED_FOR" => '...' } might be useful as well.
+  def self.authenticate_principal(username, password, validation_factors = {})
+    response = authenticated_connection do
       pword = PasswordCredential.new(password, false)
-      ctx = PrincipalAuthenticationContext.new(@@application_token.name, pword, username, nil)
+      aovf = helper_validation_factors(validation_factors)
+      ctx = PrincipalAuthenticationContext.new(@@application_token.name, pword, username, aovf)
       arg = AuthenticatePrincipal.new(@@application_token, ctx)
 
       server.authenticatePrincipal(arg)      
@@ -108,6 +94,8 @@ class Crowd
         return response.out
       when InvalidAuthenticationException
         return nil      
+      when InvalidAccountException
+        return nil
       when nil #no reponse      
         raise AuthenticationInvalidCredentialException, response
       else
@@ -116,10 +104,23 @@ class Crowd
   end
   
   ##
-  # Is valid principal token?
-  def self.is_valid_principal_token?(principal_token, validation_factors = [])
-    response = authenticated_connection do      
-      arg = IsValidPrincipalToken.new(@@application_token, principal_token, validation_factors)
+  # Authenticates a principal without validating a password.
+  def self.create_principal_token(username, validation_factors = {})
+    response = authenticated_connection do
+      aovf = helper_validation_factors(validation_factors)
+      arg = CreatePrincipalToken.new(@@application_token, username, aovf)
+      server.createPrincipalToken(arg)
+    end
+    response.out
+  end
+  
+  ##
+  # Checks if the principal's current token is still valid.
+  def self.is_valid_principal_token?(principal_token, validation_factors = {})
+    response = authenticated_connection do
+      aovf = ArrayOfValidationFactor.new
+      validation_factors.each { |name,value| aovf << ValidationFactor.new(name, value)}
+      arg = IsValidPrincipalToken.new(@@application_token, principal_token, aovf)
       server.isValidPrincipalToken(arg)      
     end    
     
@@ -479,7 +480,7 @@ class Crowd
   # Parse the user
   def self.parse_principal(rp)
     p = {}
-
+    
     p[:id] = rp.iD
     p[:active] = rp.active
     p[:conception] = rp.conception
@@ -489,7 +490,7 @@ class Crowd
     p[:name] = rp.name
 
     p[:attributes] = {}
-
+    
     rp.attributes.each do |attr|
       case attr.values.size
         when 0
@@ -502,6 +503,12 @@ class Crowd
     end
 
     return p
+  end
+
+  # Create ArrayOfValidationFactor from a ruby key=>value hash
+  def self.helper_validation_factors(validation_factors = {})
+    aovf = ArrayOfValidationFactor.new
+    validation_factors.each { |name,value| aovf << ValidationFactor.new(name, value)}
   end
      
   # Has the application been authenticated?
@@ -521,12 +528,12 @@ class Crowd
     
     application_auth_check
     response = yield
-  rescue AuthenticationException
+  rescue AuthenticationException => e
     # Push the response into the exception message
-    raise AuthenticationException, response
-  rescue Errno::ECONNREFUSED
-    raise AuthenticationConnectionException
-  rescue SOAP::FaultError => e
+    raise AuthenticationException, e
+  rescue Errno::ECONNREFUSED => e
+    raise AuthenticationConnectionException, e
+  rescue ::SOAP::FaultError => e
     # If the application token is invalid/expired, we'll give it one more shot.
     if e.message.include?('Invalid application client')
       authenticate_application
@@ -534,10 +541,10 @@ class Crowd
     else
       # It may not always be a not found case but until the type of
       # FaultError is known, which has not been able to be determined
-      raise AuthenticationObjectNotFoundException, e.message
+      raise AuthenticationObjectNotFoundException, e
     end
-  rescue Exception
-    raise AuthenticationException, response
+  rescue Exception, e
+    raise AuthenticationException, e
   ensure
     if response.is_a?(InvalidAuthorizationTokenException)
       authenticate_application
