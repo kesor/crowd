@@ -37,6 +37,7 @@ Methods exercised:
 Assumptions (configured in CrowdTest.rb):
 
 * Application name and password is 'soaptest'
+* Application 'soaptest' directory set to 'True'
 * Crowd Server is on localhost
 
 == TODO:
