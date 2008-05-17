@@ -8,15 +8,20 @@ require 'rubygems'
 gem 'soap4r'
 
 require File.join(File.dirname(__FILE__), 'crowd', 'version')
-require File.join(File.dirname(__FILE__), 'crowd', 'defaultDriver.rb')
+require File.join(File.dirname(__FILE__), 'crowd', 'soap', 'driver.rb')
 
 #
-# Place 'obj.wiredump_dev = STDERR' after any SecurityServerPortType
-# instantiation to see the raw SOAP calls and responses in a test
-# console
+# Place 'server.wiredump_dev = STDERR' after any to see
+# the raw SOAP calls and responses in a test console
 #
 
 class Crowd
+
+  #
+  # shortcircuit Crowd::SOAP
+  #
+  include SOAP
+
   #
   # Class variables
   #
@@ -196,7 +201,7 @@ class Crowd
     end 
   rescue AuthenticationObjectNotFoundException
     return nil
-  rescue SOAP::FaultError => e
+  rescue ::SOAP::FaultError => e
     raise AuthenticationException, e.message
   end
   
