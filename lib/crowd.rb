@@ -506,7 +506,7 @@ class Crowd
   
   # Shorthand for getting the security server object
   def self.server
-    SecurityServerPortType.new(@@crowd_url)
+    @@server ||= SecurityServerPortType.new(@@crowd_url)
   end
   
   # Wrapper for catching common exceptions.  Also allows the application a chance
