@@ -25,9 +25,8 @@ class Crowd
   #
   # Class variables
   #
-    
   private
-  
+      
   @@application_token = nil
   @@crowd_app_name = nil
   @@crowd_app_pword = nil
@@ -39,6 +38,13 @@ class Crowd
   def self.crowd_url=(value); @@crowd_url = value; end
   def self.crowd_app_name=(value); @@crowd_app_name = value; end
   def self.crowd_app_pword=(value); @@crowd_app_pword = value; end
+  
+  
+  # for testing
+  def self.crowd_url; @@crowd_url; end
+  def self.crowd_app_name; @@crowd_app_name; end
+  def self.crowd_app_pword; @@crowd_app_pword; end
+  def self.application_token; @@application_token; end
   
   public
   
@@ -474,13 +480,28 @@ class Crowd
         raise AuthenticationException, response
     end
   end
+  
+  def self.find_all_group_names
+    response = authenticated_connection do 
+      arg = FindAllGroupNames.new(@@application_token)
+      server.findAllGroupNames(arg)
+    end
+    
+    case response
+      when FindAllGroupNamesResponse
+        return response.out
+      when ObjectNotFoundException
+        return AuthenticationObjectNotFoundException
+      else
+        raise AuthenticationException, response
+    end
+  end
 
   private
 
   # Parse the user
   def self.parse_principal(rp)
     p = {}
-    
     p[:id] = rp.iD
     p[:active] = rp.active
     p[:conception] = rp.conception

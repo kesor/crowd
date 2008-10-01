@@ -128,5 +128,9 @@ describe Crowd do
   it "should remove principal" do
     Crowd.remove_principal('unittest').should be_true
   end
+  
+  it "should find all groups" do
+    Crowd.find_all_group_names.should be_true
+  end
 
 end
