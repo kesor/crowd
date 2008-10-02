@@ -33,6 +33,9 @@ Methods exercised:
 * removeRole
 * invalidatePrincipalToken
 * isValidPrincipalToken
+* findAllGroupNames
+* findGroupMemberships
+
 
 Assumptions (configured in CrowdTest.rb):
 
