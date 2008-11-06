@@ -499,7 +499,7 @@ class Crowd
   
   def self.find_all_groups_for_principal(username)
      response = authenticated_connection do 
-       arg = FindGroupMemberships.new(@@application_token, group)
+       arg = FindGroupMemberships.new(@@application_token, username)
        server.findGroupMemberships(arg)
      end
      
@@ -513,6 +513,22 @@ class Crowd
      end
   end
   
+  def self.get_group(name)
+    response = authenticated_connection do 
+       arg = FindGroupByName.new(@@application_token, name)
+       server.findGroupByName(arg)
+     end
+     
+     case response
+       when FindGroupByNameResponse
+         return response.out
+       when ObjectNotFoundException
+         return AuthenticationObjectNotFoundException
+       else
+         raise AuthenticationException, response
+     end
+  end
+
   private
 
   # Parse the user
