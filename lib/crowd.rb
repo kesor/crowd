@@ -6,6 +6,7 @@
 #
 require 'rubygems'
 gem 'soap4r'
+require 'soap4r' 
 
 require File.join(File.dirname(__FILE__), 'crowd', 'version')
 require File.join(File.dirname(__FILE__), 'crowd', 'soap', 'driver.rb')
