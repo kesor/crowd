@@ -15,47 +15,47 @@ Original SOAP API is available from Atlassian at http://confluence.atlassian.com
 
 == FEATURES:
 
-Methods exercised (* = implemented, - = not implemented):
+Methods exercised (*implemented*, not implemented):
 
-* addAttributeToPrincipal
+* *addAttributeToPrincipal*
 - addGroup
-* addPrincipal
+* *addPrincipal*
 - addPrincipalToGroup
-* addPrincipalToRole
-* addRole
-* authenticateApplication
-* authenticatePrincipal
+* *addPrincipalToRole*
+* *addRole*
+* *authenticateApplication*
+* *authenticatePrincipal*
 - authenticatePrincipalSimple
 - createPrincipalToken
-* findAllGroupNames
+* *findAllGroupNames*
 - findAllGroupRelationships
-* findAllPrincipalNames
-* findAllRoleNames
+* *findAllPrincipalNames*
+* *findAllRoleNames*
 - findGroupByName
-* findGroupMemberships
-* findPrincipalByName
-* findPrincipalByToken
+* *findGroupMemberships*
+* *findPrincipalByName*
+* *findPrincipalByToken*
 - findRoleByName
 - findRoleMemberships
 - getCookieInfo
 - getGrantedAuthorities
-* invalidatePrincipalToken
+* *invalidatePrincipalToken*
 - isCacheEnabled
 - isGroupMember
-* isRoleMember
-* isValidPrincipalToken
-* removeAttributeFromPrincipal
+* *isRoleMember*
+* *isValidPrincipalToken*
+* *removeAttributeFromPrincipal*
 - removeGroup
-* removePrincipal
+* *removePrincipal*
 - removePrincipalFromGroup
-* removePrincipalFromRole
-* removeRole
+* *removePrincipalFromRole*
+* *removeRole*
 - resetPrincipalCredential
 - searchGroups
 - searchPrincipals
 - searchRoles
 - updateGroup
-* updatePrincipalAttribute
+* *updatePrincipalAttribute*
 - updatePrincipalCredential
 
 
