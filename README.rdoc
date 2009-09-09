@@ -86,14 +86,14 @@ Ruby client for Atlassian Crowd v1.6.1
 
 == FILES:
 
-* +README.rdoc+ - You're soaking in it
-* +lib/crowd/soap/crowd-1.6.1.wsdl+ - Downloaded from Crowd
-* +lib/crowd/soap/driver.rb+ - Generated
-* +lib/crowd/soap/mapping_registry.rb+ - Generated
-* +lib/crowd/soap/default.rb+ - Generated
-* +lib/crowd/soap/SecurityServerClient.rb+ - Generated
-* +lib/crowd.rb+ - Class wrapping crowd calls
-* +spec/crowd_spec.rb+ - Tests
+* <tt>README.rdoc</tt> - You're soaking in it
+* <tt>lib/crowd/soap/crowd-1.6.1.wsdl</tt> - Downloaded from Crowd
+* <tt>lib/crowd/soap/driver.rb</tt> - Generated
+* <tt>lib/crowd/soap/mapping_registry.rb</tt> - Generated
+* <tt>lib/crowd/soap/default.rb</tt> - Generated
+* <tt>lib/crowd/soap/SecurityServerClient.rb</tt> - Generated
+* <tt>lib/crowd.rb</tt> - Class wrapping crowd calls
+* <tt>spec/crowd_spec.rb</tt> - Tests
 
 == LICENSE:
 
