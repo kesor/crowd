@@ -1,10 +1,11 @@
 = crowd
+    updated by Olli Helenius <liff@iki.fi>
     updated by Evgeny Zislis (evgeny.zislis@gmail.com)
     original by Jason Rimmer (jrimmer@irth.net) & gemified for rubyforge by Daniel Morrison (http://collectiveidea.com)
 
 == DESCRIPTION:
 
-A client for Atlassian[http://www.atlassian.com] Crowd[http://www.atlassian.com/crowd] v1.4.0
+A client for Atlassian[http://www.atlassian.com] Crowd[http://www.atlassian.com/crowd] v1.6.1
 
 === NOTES:
 WSDL stub generated with:
@@ -14,34 +15,55 @@ Original SOAP API is available from Atlassian at http://confluence.atlassian.com
 
 == FEATURES:
 
-Methods exercised:
+Methods exercised (* = implemented, - = not implemented):
 
-* authenticatePrincipal
-* addPrincipal
-* findPrincipalByName
-* findPrincipalByToken
-* removeAttributeFromPrincipal
 * addAttributeToPrincipal
-* updatePrincipalAttribute
-* removePrincipal
+- addGroup
+* addPrincipal
+- addPrincipalToGroup
+* addPrincipalToRole
+* addRole
+* authenticateApplication
+* authenticatePrincipal
+- authenticatePrincipalSimple
+- createPrincipalToken
+* findAllGroupNames
+- findAllGroupRelationships
 * findAllPrincipalNames
 * findAllRoleNames
-* addRole
-* addPrincipalToRole
-* removePrincipalFromRole
-* isRoleMember
-* removeRole
-* invalidatePrincipalToken
-* isValidPrincipalToken
-* findAllGroupNames
+- findGroupByName
 * findGroupMemberships
+* findPrincipalByName
+* findPrincipalByToken
+- findRoleByName
+- findRoleMemberships
+- getCookieInfo
+- getGrantedAuthorities
+* invalidatePrincipalToken
+- isCacheEnabled
+- isGroupMember
+* isRoleMember
+* isValidPrincipalToken
+* removeAttributeFromPrincipal
+- removeGroup
+* removePrincipal
+- removePrincipalFromGroup
+* removePrincipalFromRole
+* removeRole
+- resetPrincipalCredential
+- searchGroups
+- searchPrincipals
+- searchRoles
+- updateGroup
+* updatePrincipalAttribute
+- updatePrincipalCredential
 
 
 Assumptions (configured in CrowdTest.rb):
 
 * Application name and password is 'soaptest'
 * Application 'soaptest' directory set to 'True'
-* Crowd Server is on localhost
+* Crowd Server is on localhost, port 8095
 
 == TODO:
 
@@ -50,13 +72,13 @@ Create Rails plugin
 
 == SYNOPSIS:
 
-Ruby client for Atlassian Crowd v1.4.0
+Ruby client for Atlassian Crowd v1.6.1
 
 == REQUIREMENTS:
 
 * Ruby v1.8.6
 * soap4r v1.5.8
-* Atlassian Crowd 1.4.0
+* Atlassian Crowd v1.6.1
 
 == INSTALL:
 
@@ -81,3 +103,5 @@ I hereby place this work that I have authored into the public domain
 and in the process abandon all copyright protection.
 
 Updated by Evgeny Zislis, evgeny.zislis@gmail.com on 2008-05-14
+
+Updated by Olli Helenius <liff@iki.fi> on 2009-09-09
