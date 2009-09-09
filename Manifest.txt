@@ -1,9 +1,9 @@
 History.txt
 Manifest.txt
-README.txt
+README.rdoc
 Rakefile
-demo/controllers/demo_controller.rb
 demo/demo.rb
+demo/controllers/demo_controller.rb
 demo/views/demo/index.html.erb
 demo/views/layouts/layout.html.erb
 lib/crowd.rb
@@ -11,7 +11,7 @@ lib/crowd/http/request.rb
 lib/crowd/http/response.rb
 lib/crowd/http/sso.rb
 lib/crowd/soap/SecurityServerClient.rb
-lib/crowd/soap/crowd-1.4.0.wsdl
+lib/crowd/soap/crowd-1.5.1.wsdl
 lib/crowd/soap/default.rb
 lib/crowd/soap/driver.rb
 lib/crowd/soap/mapping_registry.rb

@@ -67,8 +67,8 @@ Assumptions (configured in CrowdTest.rb):
 
 == TODO:
 
-Rightsize error handling
-Create Rails plugin
+* Rightsize error handling
+* Create Rails plugin
 
 == SYNOPSIS:
 
@@ -77,22 +77,23 @@ Ruby client for Atlassian Crowd v1.6.1
 == REQUIREMENTS:
 
 * Ruby v1.8.6
-* soap4r v1.5.8
-* Atlassian Crowd v1.6.1
+* soap4r[http://dev.ctor.org/soap4r] v1.5.8
+* Atlassian Crowd[http://atlassian.com/crowd] v1.6.1
 
 == INSTALL:
 
-* sudo gem install crowd
+  sudo gem install crowd
 
 == FILES:
 
-* default.rb - Generated
-* defaultDriver.rb - Generated
-* defaultMappingRegistry - Generated
-* README - You're soaking in it
-* SecurityServerClient.rb - Generated
-* crowd.rb - Class wrapping crowd calls
-* test_crowd.rb - Unit tests
+* +README.rdoc+ - You're soaking in it
+* +lib/crowd/soap/crowd-1.6.1.wsdl+ - Downloaded from Crowd
+* +lib/crowd/soap/driver.rb+ - Generated
+* +lib/crowd/soap/mapping_registry.rb+ - Generated
+* +lib/crowd/soap/default.rb+ - Generated
+* +lib/crowd/soap/SecurityServerClient.rb+ - Generated
+* +lib/crowd.rb+ - Class wrapping crowd calls
+* +spec/crowd_spec.rb+ - Tests
 
 == LICENSE:
 
