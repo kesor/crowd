@@ -587,15 +587,9 @@ class Crowd
   rescue Errno::ECONNREFUSED => e
     raise AuthenticationConnectionException, e
   rescue ::SOAP::FaultError => e
-    # If the application token is invalid/expired, we'll give it one more shot.
-    if e.message.include?('Invalid application client')
-      authenticate_application
-      response =  yield
-    else
-      # It may not always be a not found case but until the type of
-      # FaultError is known, which has not been able to be determined
-      raise AuthenticationObjectNotFoundException, e
-    end
+    # We'll retry once more on any fault.
+    authenticate_application
+    response =  yield
   rescue Exception, e
     raise AuthenticationException, e
   ensure
